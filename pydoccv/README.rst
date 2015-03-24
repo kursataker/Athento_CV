@@ -6,9 +6,11 @@ PyDocCV is a package developed using Python and OpenCV to improve OCR in docu-
 ments. Among the documents tested using this package are: passports, bills, 
 delivery notes, budgets, and other common documents.
 
+
 This package includes several functions to transform images, for example: 
     - Delete coloured background.
     - Delete "salt and pepper" noise.
+
     
 The quality of the output and it's OCR performance will depend on:
 
@@ -22,6 +24,3 @@ The quality of the output and it's OCR performance will depend on:
     - Your personal experience in image transformation. As you might need to 
         perform a combination of operations or change the parameters values 
         significantly.
-
-As many documents are scanned and outputed in a PDF file, this package uses the 
-*pdftoppm* linux command to get PNG images from a PDF document.
