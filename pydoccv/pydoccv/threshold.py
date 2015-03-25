@@ -1,50 +1,58 @@
 import cv2 as cv
-import numpy as np
 import img_utils as iu
 import os
+import argparse
 
 """
 This script shows the results of applying threshold values to the input image
-and ask the user wether he wants to save the outputed image or not.        
+and ask the user wether he wants to save the outputed image or not. Also, it can
+be used in the CLI.
 """
 
 def apply(image, thresh_values, output_name):
 
-    try:
-        # Gets the filename without the extension
-        output_name, ext = os.path.splitext(output_name)
+    if isinstance(thresh_values, list) == False:
+        thresh_val = [thresh_values]
+
+    if output_name == None or output_name == "":
+        raise ValueError("Output name must be something")
+
+    if image == None:
+        raise IOError("Input image is None")
+
+    for i, value in enumerate(thresh_val):
+        if value < 0 or value > 255:
+            raise ValueError("All threshold values must be between 0 and 255")
+
+    # Gets the filename without the extension
+    output_name, ext = os.path.splitext(output_name)
         
-        # Shows the image with the current threshold applied and asks the user 
-        # whether save this sample or not. It keeps asking until all thresh_val 
-        # values have been tested
-        for i in thresh_values:
-                ## Applies the threshold and plots it
-                (T, img_thresh) = cv.threshold(image, float(i), 255, 
-                                                cv.THRESH_BINARY)
-                title = "Thresholded at {0}".format(T)
-                cv.imshow(title, img_thresh)
-                print "Press any key in the image window to continue..."
-                cv.waitKey(0)
+    # Shows the image with the current threshold applied and asks the user
+    # whether save the sample or not. It keeps asking until all thresh_values
+    # have been tested
+    for i in thresh_values:
+        ## Applies the threshold and plots it
+        (T, img_thresh) = cv.threshold(image, float(i), 255, cv.THRESH_BINARY)
+        title = "Thresholded at {0}".format(T)
+        cv.imshow(title, img_thresh)
+        print "Press any key in the image window to continue..."
+        cv.waitKey(0)
                 
-                ##Saving procedure, replace this block of code if you want to
-                ##stablish a new system of image saving.
-                question = "Image thresholded at value {0}.".format(T)
-                question += "Do you want to save this image? [y/n]:"
+        ##Saving procedure, replace this block of code if you want to
+        ##stablish a new system of image saving.
+        question = "Image thresholded at value {0}.".format(T)
+        question += "Do you want to save this image? [y/n]:"
                 
-                current_out_name = output_name
-                current_out_name += "-GREY-{0}T{1}".format(int(T), ext)
-                iu.save_img(img_thresh, current_output_name, question)
-                #End of saving procedure
+        current_output_name = output_name
+        current_output_name += "-GREY-{0}T{1}".format(int(T), ext)
+
+        iu.save_img(img_thresh, current_output_name, question)
                 
                 
-                # In order to display properly the images, in each iteration the
-                # opened windows must be closed.
-                cv.destroyAllWindows()
-        r = 0
-    except:
-        print "Unexpected error while applying threshold."
-        r = -1
-    return r
+    # In order to display properly the images, in each iteration the
+    # opened windows must be closed.
+    cv.destroyAllWindows()
+    return 0
     
 
 if __name__ == '__main__':
