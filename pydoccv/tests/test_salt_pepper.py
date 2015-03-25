@@ -56,9 +56,3 @@ class Test_SP:
         with pytest.raises(IOError) as exc:
             clean("", 250, 3, 3)
         assert exc.value.message == "Input file not found"
-
-    #Unexpected error
-    def test_sp_io(self):
-        with pytest.raises(Exception) as exc:
-            clean(self.test_image, 250, 3, 3)
-        assert exc.value.message != ""

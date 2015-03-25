@@ -12,17 +12,9 @@ be used in the CLI.
 def apply(image, thresh_values, output_name):
 
     if isinstance(thresh_values, list) == False:
-        thresh_val = [thresh_values]
+        thresh_values = [thresh_values]
 
-    if output_name == None or output_name == "":
-        raise ValueError("Output name must be something")
-
-    if image == None:
-        raise IOError("Input image is None")
-
-    for i, value in enumerate(thresh_val):
-        if value < 0 or value > 255:
-            raise ValueError("All threshold values must be between 0 and 255")
+    check_arguments(image, thresh_values, output_name)
 
     # Gets the filename without the extension
     output_name, ext = os.path.splitext(output_name)
@@ -46,14 +38,26 @@ def apply(image, thresh_values, output_name):
         current_output_name = output_name
         current_output_name += "-GREY-{0}T{1}".format(int(T), ext)
 
-        iu.save_img(img_thresh, current_output_name, question)
+        #iu.save_img(img_thresh, current_output_name, question)
                 
                 
     # In order to display properly the images, in each iteration the
     # opened windows must be closed.
     cv.destroyAllWindows()
     return 0
-    
+
+
+def check_arguments(image, thresh_values, output_name):
+    if output_name == None or output_name == "":
+        raise ValueError("Output can't be None or ''")
+
+    if image == None:
+        raise IOError("Input image is None")
+
+    for i, value in enumerate(thresh_values):
+        if value < 0 or value > 255:
+            raise ValueError("All threshold values must be between 0 and 255")
+
 
 if __name__ == '__main__':
         
