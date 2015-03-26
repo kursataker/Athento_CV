@@ -9,11 +9,13 @@ and ask the user wether he wants to save the outputed image or not. Also, it can
 be used in the CLI.
 """
 
-def apply(image, thresh_values, output_name):
+def apply(image, output_name, thresh_values = [250, 245, 240, 230, 225, 220]):
 
+    #If thresh is not a list of values transform it.
     if isinstance(thresh_values, list) == False:
         thresh_values = [thresh_values]
 
+    #Checking arguments and raising expected exceptions
     check_arguments(image, thresh_values, output_name)
 
     # Gets the filename without the extension
@@ -29,7 +31,6 @@ def apply(image, thresh_values, output_name):
         cv.imshow(title, img_thresh)
         print "Press any key in the image window to continue..."
         cv.waitKey(0)
-                
         ##Saving procedure, replace this block of code if you want to
         ##stablish a new system of image saving.
         question = "Image thresholded at value {0}.".format(T)
@@ -48,8 +49,12 @@ def apply(image, thresh_values, output_name):
 
 
 def check_arguments(image, thresh_values, output_name):
-    if output_name == None or output_name == "":
-        raise ValueError("Output can't be None or ''")
+
+    if output_name == '':
+        raise ValueError("The value of the output name can't be ''.")
+
+    if output_name == None:
+        raise ValueError("The output name can't be a None object.")
 
     if image == None:
         raise IOError("Input image is None")
@@ -57,6 +62,8 @@ def check_arguments(image, thresh_values, output_name):
     for i, value in enumerate(thresh_values):
         if value < 0 or value > 255:
             raise ValueError("All threshold values must be between 0 and 255")
+
+    return 0
 
 
 if __name__ == '__main__':
@@ -79,8 +86,6 @@ if __name__ == '__main__':
         # Checking the input values:
         if thresh_val == None:
                 thresh_val = [250, 245, 240, 230, 225, 220]
-        else:
-                thresh_val = [thresh_val]
         
         if output_name == None:
                 output_name = input_file

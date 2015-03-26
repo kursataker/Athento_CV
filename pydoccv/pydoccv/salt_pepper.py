@@ -16,7 +16,8 @@ def clean(input_file,  thresh_val = [250, 245, 240, 230, 225, 220],
     window_size = int(window_size)
     kernel_size = int(kernel_size)
 
-    sp_check_arguments(input_file, window_size, kernel_size)
+    #Checking arguments and raising expected exceptions
+    check_arguments(input_file, window_size, kernel_size)
 
     # Loading the image
     image = cv.imread(input_file)
@@ -28,21 +29,34 @@ def clean(input_file,  thresh_val = [250, 245, 240, 230, 225, 220],
     image = cv.erode(image, (kernel_size, kernel_size))
 
     # Applying threshold list
-    th.apply(image, thresh_val, input_file)
+    th.apply(image, input_file, thresh_val)
 
     cv.waitKey(0)
     return 0
 
-def sp_check_arguments(input_file, window_size, kernel_size):
+
+def check_arguments(input_file, window_size, kernel_size):
+
+    if input_file == '':
+        raise IOError("Input file can't be ''.")
+
+    if input_file == None:
+        raise IOError("Input file can't be None.")
 
     if os.path.isfile(input_file) == False:
-        raise IOError("Input file not found")
+        raise IOError("Input file not found.")
 
-    if kernel_size < 0 or kernel_size % 2 == 0:
-        raise ValueError("Kernel size value must be positive and odd.")
+    if kernel_size < 0:
+        raise ValueError("Kernel size value must be greater than 0.")
 
-    if window_size < 0 or window_size % 2 == 0:
-        raise ValueError("Window size value must be positive and odd.")
+    if kernel_size % 2 == 0:
+        raise ValueError("Kernel size value must be odd.")
+
+    if window_size < 0:
+        raise ValueError("Window size value must be greater than 0.")
+
+    if window_size % 2 == 0:
+        raise ValueError("Window size value must be odd.")
 
     return 0
 
