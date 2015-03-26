@@ -1,31 +1,52 @@
 import subprocess as sp
 import sys
-
+import os
 """
 TessPy is a simple Tesseract-OCR API in Python. It provides the same functiona-
 lity as the tesseract command, using functions in Python and calling the 
 tesseract instruction using the subprocess Python's package.
 """
 
+# Auxiliary methods
+
+def file_exists(input_file):
+    """
+    :param input_file: path to the input file
+    :return: true or false wether the file exists or not.
+    """
+    if input_file == '':
+        raise ValueError("The input file can't be ''.")
+    if input_file == None:
+        raise ValueError("The input file can't be a None object")
+
+    return os.path.isfile(input_file)
+
+
+
 # Basic methods
 
 def exec_tess(cmd):
     """
     :param cmd: a list of strings containing the whole command
-    :return:
-        if error: -1
-        else: returns the terminal output of the command received as parameter.
+    :return: the terminal output of the command received as parameter.
 
-    This method works as our wrapper, as it is the only place where Tesseract
-    is actually called.
+    This method works as our wrapper, and it is the only function where
+    Tesseract is actually called.
     """
+
+    if cmd == "":
+        raise ValueError("The command string can't be ''.")
+
+    if cmd == None:
+        raise ValueError("The command string can't be a None object.")
 
     try:
         output = sp.check_output(cmd, stderr=sp.STDOUT)
-    except:
-        output = -1
-        print "Unexpected error: " + sys.exc_info()[0]
-        raise
+    except ValueError:
+        raise ValueError("The command string is not correct. Check the syntax.")
+    except sp.CalledProcessError:
+        raise sp.CalledProcessError("Can't apply OCR with Tesseract on this document.", cmd=)
+
     return output
 
 
@@ -36,6 +57,8 @@ def get_info(file_path):
     :return: returns the complete orientation and script detection information
                 obtained by "tesseract input_img output -psm 0"
     """
+    if file_exists(file_path) == False:
+        raise IOError("Input file not found.")
 
     return psm(file_path)
 
@@ -44,20 +67,17 @@ def get_info(file_path):
 def get_orientation(file_path):
     """
     :param file_path: input file path
-    :return:
-        if error: -1
-        else: returns the orientation of the document obtained by:
-                "tesseract img -psm 0"
+    :return: returns the orientation of the document obtained by "tesseract img
+                -psm 0"
     """
 
-    try:
-        output = get_info(file_path)
-        aux = output.split("Orientation: ")
-        orientation = aux[1].split("\n")
-    except:
-        orientation = -1
-        print "Unexpected error: " + sys.exc_info()[0]
-        raise
+    if file_exists(file_path) == False:
+        raise IOError("Input file not found.")
+
+    output = get_info(file_path)
+    aux = output.split("Orientation: ")
+    orientation = aux[1].split("\n")
+
     return orientation[0]
 
 
@@ -71,14 +91,13 @@ def get_orientation_confidence(file_path):
                 "tesseract img -psm 0"
     """
 
-    try:
-        output = get_info(file_path)
-        aux = output.split("Orientation confidence: ")
-        confidence = aux[1].split("\n")
-    except:
-        confidence = -1
-        print "Unexpected error: " + sys.exc_info()[0]
-        raise
+    #if file_exists(file_path) == False:
+    #    raise IOError("Input file not found")
+
+    output = get_info(file_path)
+    aux = output.split("Orientation confidence: ")
+    confidence = aux[1].split("\n")
+
     return confidence[0]
 
 
@@ -614,18 +633,15 @@ def psm(file_path, output_file = "", option = 0, lang = "eng",
     info = ""
     error_msg = "Option values between 0 and 10. Use tesseract -h in a" \
                 "terminal to see a list of available options."
-    try:
-        if(output_file == ""):
-            output_file = file_path[:-4]
-        file_path = file_path.encode("utf-8")
-        output_file = output_file.encode("utf-8")
 
-        cmd = ["tesseract", file_path, output_file, "-psm", str(option), "-l",
-               lang, config_file]
-        output = exec_tess(cmd)
-    except :
-        print error_msg
-        info = -1
+    if(output_file == ""):
+        output_file = file_path[:-4]
+
+    file_path = file_path.encode("utf-8")
+    output_file = output_file.encode("utf-8")
+
+    cmd = ["tesseract", file_path, output_file, "-psm", str(option)]
+    output = exec_tess(cmd)
     return output
 
 
@@ -643,3 +659,4 @@ def read_txt_file(file_name):
         output = -1
         print "IOError error: " + sys.exc_info()[0]
     return text
+1
