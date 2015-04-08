@@ -1,5 +1,4 @@
 import cv2 as cv
-import img_utils as iu
 import os
 import argparse
 
@@ -59,8 +58,9 @@ def check_arguments(image, thresh_values, output_name):
     if image == None:
         raise IOError("Input image is None")
 
+
     for i, value in enumerate(thresh_values):
-        if value < 0 or value > 255:
+        if int(value) < 0 or int(value) > 255:
             raise ValueError("All threshold values must be between 0 and 255")
 
     return 0

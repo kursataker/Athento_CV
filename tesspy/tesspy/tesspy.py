@@ -1,6 +1,6 @@
 import subprocess as sp
-import sys
 import os
+
 """
 TessPy is a simple Tesseract-OCR API in Python. It provides the same functiona-
 lity as the tesseract command, using functions in Python and calling the 
