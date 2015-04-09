@@ -15,7 +15,7 @@ This package includes several functions to transform images, for example:
 The quality of the output and it's OCR performance will depend on:
 
     - The quality of the source document, as the quality value increases so does
-the OCR.
+    the OCR.
     - The amount of noise in the document and where it's located.
     - The existance of watermarks.
     - The colour of the document. Clear colours are easier to remove than darker
