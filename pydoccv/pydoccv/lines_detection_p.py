@@ -19,7 +19,7 @@ def delete_all_lines(image, line_length = 1000, color = (255, 255, 255),
 
     lines = detect_lines(image)
     while lines != None:
-        image = delete_lines(image, lines, line_length, color, width)
+        image = delete_lines(image, lines, color, width)
         lines = detect_lines(image)
 
     return image

@@ -5,10 +5,10 @@ import os
 
 def detect_lines(image, rho = 1, theta = np.pi/180, threshold = 200):
 
+    print image.shape
     gray = cv.cvtColor(image,cv.COLOR_BGR2GRAY)
     edges = cv.Canny(gray, 50, 150, apertureSize = 3)
     lines = cv.HoughLines(edges, rho, theta, threshold)
-
     return lines
 
 
