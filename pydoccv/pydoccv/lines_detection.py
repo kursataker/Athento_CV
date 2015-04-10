@@ -5,25 +5,24 @@ import os
 
 def detect_lines(image, rho = 1, theta = np.pi/180, threshold = 200):
 
-    print image.shape
     gray = cv.cvtColor(image,cv.COLOR_BGR2GRAY)
     edges = cv.Canny(gray, 50, 150, apertureSize = 3)
     lines = cv.HoughLines(edges, rho, theta, threshold)
     return lines
 
 
-def delete_lines(image, lines, line_length = 1000, color = (255,255,255),
-                   width = 5):
+def delete_lines(image, lines, line_length = 1000, width = 5,
+                 color = (255,255,255)):
 
-    return draw_lines(image, lines, line_length, color, width)
+    return draw_lines(image, lines, line_length, width, color)
 
 
-def delete_all_lines(image, line_length = 1000, color = (255, 255, 255),
-                     width = 5):
+def delete_all_lines(image, line_length = 1000, width = 5,
+                     color = (255, 255, 255)):
 
     lines = detect_lines(image)
     while lines != None:
-        image = delete_lines(image, lines, line_length, color, width)
+        image = delete_lines(image, lines, line_length, width, color)
         lines = detect_lines(image)
 
     return image
@@ -53,11 +52,11 @@ def distance_mean(lines, line_length = 1000):
     return [total[0]/n_lines, total[1]/n_lines]
 
 
-def draw_lines(image, lines, line_length = 1000, color=(0,0,255), width=5):
+def draw_lines(image, lines, line_length = 1000, width=5, color=(0,0,255)):
 
     for l in lines[0]:
         x1, y1, x2, y2 = get_line_coordinates(l, line_length)
-        cv.line(image, (x1, y1), (x2, y2), color, width)
+        cv.line(image, (x1, y1), (x2, y2), width, color)
 
     return image
 

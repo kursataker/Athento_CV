@@ -14,20 +14,19 @@ def detect_lines(image, minLineLength = 30, maxLineGap = 20, rho = 1,
     return lines
 
 
-def delete_all_lines(image, line_length = 1000, color = (255, 255, 255),
-                     width = 5):
+def delete_all_lines(image, width = 5, color = (255, 255, 255)):
 
     lines = detect_lines(image)
     while lines != None:
-        image = delete_lines(image, lines, color, width)
+        image = delete_lines(image, lines, width, color)
         lines = detect_lines(image)
 
     return image
 
 
-def delete_lines(image, lines, color = (255,255,255), width = 5):
+def delete_lines(image, lines, width = 5, color = (255,255,255)):
 
-    return draw_lines(image, lines, color, width)
+    return draw_lines(image, lines, width, color)
 
 
 def distance(line1, line2):
@@ -54,7 +53,7 @@ def distance_mean(lines, line_length = 1000):
     return [total[0]/n_lines, total[1]/n_lines]
 
 
-def draw_lines(image, lines, color = (0,0,255), width = 5):
+def draw_lines(image, lines, width = 5, color = (0,0,255))  :
 
     for x1, y1, x2, y2 in lines[0]:
         cv.line(image, (x1,y1), (x2,y2), color, width)
