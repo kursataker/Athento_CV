@@ -1,6 +1,17 @@
-This file contains a basic description of each function included in the
-PyDocCV package and their common parameters and error codes, as a basic guide to 
-use it in the CLI .
+##PyDocCV Manual
+
+PyDocCV is a set of Python modules designed to implement simple computer vision
+operations. This package aims to perform the quality of an image as this is a
+crucial factor in OCR.
+
+To perform this operations, I have been using OpenCV, which you can download and
+learn some of it from [OpenCV.org](http://www.opencv.org)
+
+
+This manual contains a basic description of each module and their functions, as
+well as their arguments an returns.
+
+
 
 ##Common parameters
 
@@ -102,14 +113,10 @@ Some of the functions described below may be used directly in the CLI. In order
 to know how to properly use the commands, open a terminal and navigate to the 
 *pydoccv* folder and type:
 
-    ```python bg_color.py -h```
-    ```python ftm_pyramid.py -h```
-    ```python lines_detection.py -h```
-    ```python lines_detection_p.py -h```
-    ```python salt_pepper.py -h```
-    ```python threshold.py -h```
+    ```python my_module.py -h```
     
-    
+Where my_module may be any of the module names listed before.
+
 
 #FILE DESCRIPTIONS
 
@@ -127,22 +134,17 @@ parameter) to the modified image and shows them asking the user to save the the
 current thresholded image.
                        
 Returns:
-The original image thresholded in a series of values. The output image will be 
-saved as:
+
+    A new image which is the original image thresholded using a series of values. 
+    The output image will be saved as:
                 
     input_name-GREY-(V)THRESH, where (V) is the value of the applied threshold.
-                
-Use in CLI:
-    python bg_color.py -i myImage.png
-    python bg_color.py -i myImage.png -t X, where X is the threshold value
-    python bg_color.py -i myImage.png -w X, where X is the size of the window 
-                                                used in the Gaussian Blur.
-                
-As usual, you can use any combination of parameters that you may need.
         
 Import:
+
 To import this function into your application, you must include the following 
 line at the beginning:
+
     ```from bg_color import clean```
     
 
@@ -166,6 +168,13 @@ Common parameters:
              pixel on a line is recognized as part of one, resulting in lines
              that may move some coordinates a few pixels even if the line is
               vertical or horizontal. On pixels.
+
+Import:
+              
+To import this functions to your application, you must include the following line
+at the beginning of your file:
+
+    ```import lines_detection```
               
 Operations supported:
 
@@ -178,7 +187,7 @@ Arguments:
 
     - rho:
     - theta:
-    - threshold
+    - threshold:
     
 Returns:
     
@@ -281,20 +290,13 @@ parameter) to the modified image and shows them one by one asking the user to
 save the current thresholded image.
         
 Returns:
+
     The input image with a blur and median filter in a series with different 
     threshold values.
                 
-Use in CLI:
-    python clean_erode.py -i myImage.png
-    python clean_erode.py -i myImage.png -t X, X = threshold value.
-    python clean_erode.py -i myImage.png -k X, X = kernel size used in the erode
-                                                     function.
-    python clean_erode.py -i myImage.png -w X, where X is the size of the window
-                                                     used in the Gaussian Blur.
-                
-    As usual, you can use any combination of parameters that you may need.
         
 Import:
+
     To import this function into your application, you must include the follo-
     wing line at the beginning:
 
@@ -309,15 +311,12 @@ current thresholded.
 
 The output images are saved in the same directory as the source.
 
-Returns: 0 if everything works fine.
+Returns: 
     
-Use in CLI
-    python threshold.py -i myImage.png
-    python threshold.py -i myImage.png -t X, where X is the threshold value
-    python threshold.py -i myImage.png -o N, where N is the custom name for the
-                                            output without the file extension.
-
+    0 if everything works fine.
+    
 Import:
+
     To import this function into your application, you must include the following 
     line at the beginning:
     
