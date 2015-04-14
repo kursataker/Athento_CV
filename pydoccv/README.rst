@@ -17,7 +17,6 @@ This package includes several functions to transform images:
 
 
 You can check everything out here: `PyDocCV Summary <docs/SUMMARY.md>`_
-1
 
 The quality of the output and it's OCR performance will depend on:
 
