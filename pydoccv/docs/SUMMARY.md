@@ -23,26 +23,36 @@ Each module name identifies the kind of operation that can be performed with the
     ```clean(input_file, thresh_val =  [225, 220, 215, 210, 205, 200],
                          window_size = 3)```
 
+
 - **ftm_pyramid**: performs a template matching operation using an approximation
 with pyramids to improve it's performance:
 
     ```ftm_pyramid(input_file, template, max_level = 5)```
+
 
 - **lines_detection**: analyses the image looking for lines in it. It may remove
 them, draw them or return some info about the lines. Lines are detected using the 
 HoughLines function. This module has several functions:
 
     ```detect_lines(image, rho = 1, theta = np.pi/180, threshold = 200):```
+    
     ```delete_lines(image, lines, line_length = 1000, width = 5,
                         color = (255,255,255)):```
+                        
     ```delete_all_lines(image, line_length = 1000, width = 5,
                             color = (255, 255, 255)):```
+                            
     ```distance(line1, line2, line_length = 1000):```
+    
     ```distance_mean(lines, line_length = 1000):```
+    
     ```draw_lines(image, lines, line_length = 1000, width=5, 
                         color=(0,0,255)):```
+                        
     ```get_line_coordinates(line, line_length = 1000):```
+    
     ```line_count(lines, line_length = 1000, error = 5):```
+    
     ```parallels(line1, line2, line_length = 1000, error = 5):```
 
 
@@ -50,22 +60,35 @@ HoughLines function. This module has several functions:
 approach.  Lines are detected using the HoughLinesP function. This module has 
 several functions:
 
-    ```detect_lines(image, minLineLength = 30, maxLineGap = 20, rho = 1,
-                 theta = np.pi/180, threshold = 200)```
-    ```delete_all_lines(image, width = 5, color = (255, 255, 255))```
-    ```delete_lines(image, lines, width = 5, color = (255,255,255))```
-    ```distance(line1, line2)```
-    ```distance_mean(lines, line_length = 1000)```
-    ```draw_lines(image, lines, width = 5, color = (0,0,255))```
-    ```line_count(lines, error = 5)```
-    ```parallels(line1, line2, error = 5)```
-
+    ```detect_lines(image, rho = 1, theta = np.pi/180, threshold = 200):```
+    
+    ```delete_lines(image, lines, line_length = 1000, width = 5,
+                        color = (255,255,255)):```
+                        
+    ```delete_all_lines(image, line_length = 1000, width = 5,
+                            color = (255, 255, 255)):```
+                            
+    ```distance(line1, line2, line_length = 1000):```
+    
+    ```distance_mean(lines, line_length = 1000):```
+    
+    ```draw_lines(image, lines, line_length = 1000, width=5, 
+                        color=(0,0,255)):```
+                        
+    ```get_line_coordinates(line, line_length = 1000):```
+    
+    ```line_count(lines, line_length = 1000, error = 5):```
+    
+    ```parallels(line1, line2, line_length = 1000, error = 5):```
+    
+    
 - **salt_pepper**: transforms the image into grayscale and performs a complete 
 erode operation. This is used to improve the quality of the text when it has 
 much “salt and pepper” noise. Functions:
 
     ```clean(input_file,  thresh_val = [250, 245, 240, 230, 225, 220], 
                 window_size = 5, kernel_size = 5)```
+
 
 - **threshold**: applies a series of threshold values to an input image. 
     Functions:
@@ -154,9 +177,7 @@ Uses the HoughLines function to detect lines in an image.
 Arguments:
 
     - rho:
-    
     - theta:
-    
     - threshold
     
 Returns:
