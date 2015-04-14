@@ -7,9 +7,16 @@ crucial factor in OCR.
 To perform this operations, I have been using OpenCV, which you can download and
 learn some of it from [OpenCV.org](http://www.opencv.org)
 
+This file provides a quick overview of each module, describing in a few words the
+operations performed in each module. A complete description for each module and
+it's functions can be found in the manuals:
 
-This manual contains a basic description of each module and their functions, as
-well as their arguments an returns.
+    - [bg_color](/manuals/bg_color.md)
+    - [ftm_pyramid](/manuals/ftm_pyramid.md)
+    - [lines_detection](/manuals/lines_detection.md)
+    - [lines_detection_p](/manuals/lines_detection_p.md)
+    - [salt_pepper](/manuals/salt_pepper.md)
+    - [threshold](/manuals/threshold.md)
 
 
 ##Summary
