@@ -11,12 +11,12 @@ This file provides a quick overview of each module, describing in a few words th
 operations performed in each module. A complete description for each module and
 it's functions can be found in the manuals:
 
-- [bg_color](/manuals/bg_color.md)
-- [ftm_pyramid](/manuals/ftm_pyramid.md)
-- [lines_detection](/manuals/lines_detection.md)
-- [lines_detection_p](/manuals/lines_detection_p.md)
-- [salt_pepper](/manuals/salt_pepper.md)
-- [threshold](/manuals/threshold.md)
+- [bg_color](manuals/bg_color.md)
+- [ftm_pyramid](anuals/ftm_pyramid.md)
+- [lines_detection](manuals/lines_detection.md)
+- [lines_detection_p](manuals/lines_detection_p.md)
+- [salt_pepper](manuals/salt_pepper.md)
+- [threshold](manuals/threshold.md)
 
 
 ##Summary
