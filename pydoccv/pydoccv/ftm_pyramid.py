@@ -78,10 +78,10 @@ def temp_match(input, template, max_level):
 
 def ftm_pyramid(input_file, template_file, max_level = 5):
 
-    if file_exists(input_file) == False:
+    if file_exists(input_file) is False:
         raise IOError("Input file not found.")
 
-    if file_exists(template_file) == False:
+    if file_exists(template_file) is False:
         raise IOError("Input file not found.")
 
     img = cv.imread(input_file)
@@ -95,7 +95,7 @@ def ftm_pyramid(input_file, template_file, max_level = 5):
     c = 0
     flag = False
 
-    while flag == False and c < np.size(tm_results):
+    while flag is False and c < np.size(tm_results):
         current = tm_results[c]
         min_val, max_val, min_loc, max_loc = cv.minMaxLoc(current)
         if max_val > 0.9:

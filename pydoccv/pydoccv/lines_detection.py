@@ -43,7 +43,7 @@ def distance_mean(lines, line_length = 1000):
     n_lines = np.size(lines)
     total = [0, 0]
     for l1 in lines[0]:
-        for l2 in lines[0]:
+        for l2 in lines[l1:]:
             d = distance(l1, l2, line_length)
             if d != -1:
                 total[0] += d[0]
