@@ -152,11 +152,15 @@ Operations supported:
 Uses the HoughLines function to detect lines in an image.
 
 Arguments:
+
     - rho:
+    
     - theta:
+    
     - threshold
     
 Returns:
+    
     A list of lines (each line is a set of coordinates).
 
 
@@ -166,6 +170,7 @@ Deletes the lines received by drawing them in the same color as the document's
 background.
     
 Returns:
+    
     A new image which is the input image with the lines drawn in the selected 
     colour.
 
@@ -181,6 +186,7 @@ more lines can be found in the image. Same arguments and return as delete_lines.
 Calculates the absolute distance between two lines that must be parallels.
 
 Returns:
+    
     A list of two elements [x,y], which are the distance in pixels between two
     coordinates of the lines.
 
@@ -190,6 +196,7 @@ Returns:
 Calculates the mean distance between a set of lines.
 
 Returns:
+
     The mean of the distance between each line.
 
 
@@ -198,6 +205,7 @@ Returns:
 Draws the lines into the input image in the selected colour.
     
 Returns:
+
     A new image which is the input image with the input lines drawn on it in the
     selected colour.
     
@@ -207,6 +215,7 @@ Returns:
 Calculates the coordinates of the line received given a line length.
     
 Returns:
+
     [x1, y1, x2, y2] a set of coordinates that represents the line.
    
     
@@ -217,6 +226,7 @@ A line is considered horizontal or vertical if it's coordinates (Y or X
 respectively) is constant (+- error argument value).
     
 Returns:
+
     [total, num_vertical_lines, num_horizontal_lines]
 
 
@@ -225,6 +235,7 @@ Returns:
 Checks if two lines are parallels, within an expected margin of error in pixels.
 
 Returns:
+
     True or false.
 
 
