@@ -9,7 +9,8 @@ class Test_SP:
 
     #Everything works ok
     def test_sp_good(self):
-        assert clean(self.test_image, 250, 3, 3) == 0
+        results = clean(self.test_image, 250, 3, 3)
+        assert isinstance(results, list) and results is not None
 
     #Error if window_size < 0 (only positive odd values admited)
     def test_sp_negative_window(self):
