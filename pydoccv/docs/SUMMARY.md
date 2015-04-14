@@ -1,4 +1,4 @@
-##PyDocCV Manual
+#PyDocCV Manual
 
 PyDocCV is a set of Python modules designed to implement simple computer vision
 operations. This package aims to perform the quality of an image as this is a
@@ -12,16 +12,6 @@ This manual contains a basic description of each module and their functions, as
 well as their arguments an returns.
 
 
-
-##Common parameters
-
-    - input_file: input file path
-    - thresh_val: list of values used to threshold.
-    - quality: quality to use in the pdf_to_png transformation.
-    - window_size: size of the window used to blur. As this values increases so
-                    does the blur.
-    - kernel_size: size of the kernel used to blur. As this values increases so
-                    does the blur.
 
 ##Summary
 
@@ -107,6 +97,19 @@ much “salt and pepper” noise. Functions:
     ```apply(image, thresh_values, output_name)```
 
 
+
+##Common parameters
+
+    - input_file: input file path
+    - thresh_val: list of values used to threshold.
+    - quality: quality to use in the pdf_to_png transformation.
+    - window_size: size of the window used to blur. As this values increases so
+                    does the blur.
+    - kernel_size: size of the kernel used to blur. As this values increases so
+                    does the blur.
+
+
+
 ##Use in CLI
 
 Some of the functions described below may be used directly in the CLI. In order 
@@ -118,10 +121,10 @@ to know how to properly use the commands, open a terminal and navigate to the
 Where my_module may be any of the module names listed before.
 
 
-#FILE DESCRIPTIONS
 
+#Modules
 
-##bg_color
+##bg_color.py
 
 This script allows to clean an image with noisy background (ie: coloured 
 background).
@@ -146,12 +149,12 @@ line at the beginning:
     ```from bg_color import clean```
     
 
-##ftm_pyramid
+##ftm_pyramid.py
 
 
 
 
-##lines_detection
+##lines_detection.py
 
 This script allow to perform several operations in documents that contain lines.
 It is based on the Standard Hough Line Transform implemented on OpenCV.
@@ -183,7 +186,7 @@ at the beginning of your file:
               
 ####Operations supported:
 
-#####detect_lines(image, rho = 1, theta = np.pi/180, threshold = 200)
+####detect_lines(image, rho = 1, theta = np.pi/180, threshold = 200)
 
 Uses the HoughLines function to detect lines in an image.
 
@@ -198,7 +201,7 @@ Returns:
     A list of lines (each line is a set of coordinates).
 
 
-#####delete_lines(image, lines, line_length = 1000, width = 5, color = (255,255,255)):
+####delete_lines(image, lines, line_length = 1000, width = 5, color = (255,255,255)):
 
 Deletes the lines received by drawing them in the same color as the document's
 background.
@@ -209,13 +212,13 @@ Returns:
     colour.
 
     
-#####delete_all_lines(image, line_length = 1000, width = 5, color = (255, 255, 255)):
+####delete_all_lines(image, line_length = 1000, width = 5, color = (255, 255, 255)):
 
 Uses the *delete_lines* function in a loop to delete all lines detected until no
 more lines can be found in the image. Same arguments and return as *delete_lines*.
 
 
-#####distance(line1, line2, line_length = 1000):
+####distance(line1, line2, line_length = 1000):
 
 Calculates the absolute distance between two lines that must be parallels.
 
@@ -225,7 +228,7 @@ Returns:
     coordinates of the lines.
 
     
-#####distance_mean(lines, line_length = 1000):
+####distance_mean(lines, line_length = 1000):
 
 Calculates the mean distance between a set of lines.
 
@@ -234,7 +237,7 @@ Returns:
     The mean of the distance between each line.
 
 
-#####draw_lines(image, lines, line_length = 1000, width=5, color=(0,0,255)):
+####draw_lines(image, lines, line_length = 1000, width=5, color=(0,0,255)):
 
 Draws the lines into the input image in the selected colour.
     
@@ -244,7 +247,7 @@ Returns:
     selected colour.
     
 
-#####get_line_coordinates(line, line_length = 1000):
+####get_line_coordinates(line, line_length = 1000):
 
 Calculates the coordinates of the line received given a line length.
     
@@ -253,7 +256,7 @@ Returns:
     [x1, y1, x2, y2] a set of coordinates that represents the line.
    
     
-#####line_count(lines, line_length = 1000, error = 5):
+####line_count(lines, line_length = 1000, error = 5):
 
 Counts the total of lines, and checks how many horizontal and vertical lines are.
 A line is considered horizontal or vertical if it's coordinates (Y or X 
@@ -264,7 +267,7 @@ Returns:
     [total, num_vertical_lines, num_horizontal_lines]
 
 
-#####parallels(line1, line2, line_length = 1000, error = 5):
+####parallels(line1, line2, line_length = 1000, error = 5):
 
 Checks if two lines are parallels, within an expected margin of error in pixels.
 
@@ -274,7 +277,7 @@ Returns:
 
 
 
-##lines_detection_p
+##lines_detection_p.py
 
 This script allow to perform several operations in documents that contain lines.
 It is based on the Probabilistic Hough Line Transform implemented on OpenCV.
@@ -307,13 +310,14 @@ at the beginning of your file:
               
 ####Operations supported:
 
-#####def detect_lines(image, minLineLength = 30, maxLineGap = 20, rho = 1, 
-#####theta = np.pi/180, threshold = 200):
+####def detect_lines(image, minLineLength = 30, maxLineGap = 20, rho = 1, theta = np.pi/180, threshold = 200):"
 
 Uses the HoughLines function to detect lines in an image.
 
-Arguments (rho, theta and threshold are used in the HoughLines call):
+Arguments (every argument is used in the HoughLinesP call):
 
+    - minLineLength: the minimum  
+    - maxLineGap: maximum gap between two points to be considered in the same line. 
     - rho: the resolution of the parameter rho in pixels.
     - theta: the resolution of the parameter theta in radians.
     - threshold: the minimum number of intersections to "detect" a line.
@@ -323,7 +327,7 @@ Returns:
     A list of lines (each line is a set of coordinates).
 
 
-#####delete_lines(image, lines, width = 5, color = (255,255,255)):
+####delete_lines(image, lines, width = 5, color = (255,255,255)):
 
 Deletes the lines received by drawing them in the same color as the document's
 background.
@@ -334,13 +338,13 @@ Returns:
     colour.
 
     
-#####delete_all_lines(image, width = 5, color = (255, 255, 255)):
+####delete_all_lines(image, width = 5, color = (255, 255, 255)):
 
 Uses the *delete_lines* function in a loop to delete all lines detected until no
 more lines can be found in the image. Same arguments and return as *delete_lines*.
 
 
-#####distance(line1, line2):
+####distance(line1, line2):
 
 Calculates the absolute distance between two lines that must be parallels.
 
@@ -350,7 +354,7 @@ Returns:
     coordinates of the lines.
 
     
-#####distance_mean(lines):
+####distance_mean(lines):
 
 Calculates the mean distance between a set of lines.
 
@@ -359,7 +363,7 @@ Returns:
     The mean of the distance between each line.
 
 
-#####draw_lines(image, lines, width=5, color=(0,0,255)):
+####draw_lines(image, lines, width=5, color=(0,0,255)):
 
 Draws the lines into the input image in the selected colour.
     
@@ -369,7 +373,7 @@ Returns:
     selected colour.
    
     
-#####line_count(lines, error = 5):
+####line_count(lines, error = 5):
 
 Counts the total of lines, and checks how many horizontal and vertical lines are.
 A line is considered horizontal or vertical if it's coordinates (Y or X 
@@ -380,7 +384,7 @@ Returns:
     [total, num_vertical_lines, num_horizontal_lines]
 
 
-#####parallels(line1, line2, error = 5):
+####parallels(line1, line2, error = 5):
 
 Checks if two lines are parallels, within an expected margin of error in pixels.
 
@@ -390,7 +394,7 @@ Returns:
 
 
 
-##salt_pepper
+##salt_pepper.py
 
 This script cleans an image with white noise (ie: text dotted due to bad pixel 
 definition).
@@ -415,7 +419,7 @@ line at the beginning:
     ```from clean_erode import clean```
 
 
-##threshold
+##threshold.py
 
 This function applies a series of threshold values (or the ones received by 
 parameter) to the modified image and shows them asking the user to save the the 
