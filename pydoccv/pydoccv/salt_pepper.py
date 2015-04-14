@@ -4,8 +4,8 @@ import argparse
 import threshold as th
 
 """
-This script cleans an image with salt and pepper noise, improving the OCR in
-documents that present this type of noise. Also, it can be used in the CLI.
+This script cleans an image with salt and pepper noise (ie: text dotted due to
+bad pixel definition).
 """
 
 
@@ -20,7 +20,9 @@ def clean(input_file,  thresh_val = [250, 245, 240, 230, 225, 220],
     check_arguments(input_file, window_size, kernel_size)
 
     # Loading the image
-    image = cv.imread(input_file)
+    image = input_file
+    if isinstance(image, str):
+        image = cv.imread(input_file)
 
     # Applying Grayscale, Gaussian and median blur and erode
     image = cv.cvtColor(image, cv.COLOR_BGR2GRAY)
@@ -29,10 +31,9 @@ def clean(input_file,  thresh_val = [250, 245, 240, 230, 225, 220],
     image = cv.erode(image, (kernel_size, kernel_size))
 
     # Applying threshold list
-    th.apply(image, input_file, thresh_val)
+    results = th.apply(image, thresh_val)
 
-    cv.waitKey(0)
-    return 0
+    return results
 
 
 def check_arguments(input_file, window_size, kernel_size):
@@ -40,10 +41,10 @@ def check_arguments(input_file, window_size, kernel_size):
     if input_file == '':
         raise IOError("Input file can't be ''.")
 
-    if input_file == None:
+    if input_file is None:
         raise IOError("Input file can't be None.")
 
-    if os.path.isfile(input_file) == False:
+    if os.path.isfile(input_file) is False:
         raise IOError("Input file not found.")
 
     if kernel_size < 0:
