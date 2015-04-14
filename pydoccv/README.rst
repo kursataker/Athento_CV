@@ -16,7 +16,7 @@ This package includes several functions to transform images:
 - Template matching improved using pyramid transformations.
 
 
-You can check everything out here: [PyDocCV Summary](docs/SUMMARY.md)
+You can check everything out here: `PyDocCV Summary <docs/SUMMARY.md)>`
 
 
 The quality of the output and it's OCR performance will depend on:
