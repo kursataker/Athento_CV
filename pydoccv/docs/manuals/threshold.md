@@ -37,7 +37,7 @@ line at the beginning:
 Applies each element in thresh_values to perform a threshold operation on the
 input file.
 
-Return:
+Returns:
 
     A list of images with different thresh_val.
 
