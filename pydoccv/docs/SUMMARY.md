@@ -140,8 +140,6 @@ Returns:
                 
     input_name-GREY-(V)THRESH, where (V) is the value of the applied threshold.
         
-Import:
-
 To import this function into your application, you must include the following 
 line at the beginning:
 
@@ -158,18 +156,23 @@ line at the beginning:
 This script allow to perform several operations in documents that contain lines.
 
 Common parameters:
+
     - image: the image to perform lines operations on it.
+    
     - lines: a list of lines.
+    
     - lineX: where X is a number. A single line.
+    
     - line_length: the length of each line of the image.
+    
     - width: the width of the line drawn.
+    
     - color: the colour of the line drawn.
+    
     - error: a margin of error of deviation of the lines. Sometimes not every
              pixel on a line is recognized as part of one, resulting in lines
              that may move some coordinates a few pixels even if the line is
               vertical or horizontal. On pixels.
-
-Import:
               
 To import this functions to your application, you must include the following line
 at the beginning of your file:
@@ -183,11 +186,11 @@ Operations supported:
 
 Uses the HoughLines function to detect lines in an image.
 
-Arguments:
+Arguments (rho, theta and threshold are used in the HoughLines call):
 
-    - rho:
-    - theta:
-    - threshold:
+    - rho: the resolution of the parameter rho in pixels.
+    - theta: the resolution of the parameter theta in radians.
+    - threshold: the minimum number of intersections to "detect" a line.
     
 Returns:
     
@@ -207,8 +210,8 @@ Returns:
     
 ####delete_all_lines(image, line_length = 1000, width = 5, color = (255, 255, 255)):
 
-Uses the delete_lines function in a loop to delete all lines detected until no
-more lines can be found in the image. Same arguments and return as delete_lines.
+Uses the *delete_lines* function in a loop to delete all lines detected until no
+more lines can be found in the image. Same arguments and return as *delete_lines*.
 
 
 ####distance(line1, line2, line_length = 1000):
@@ -294,11 +297,8 @@ Returns:
     The input image with a blur and median filter in a series with different 
     threshold values.
                 
-        
-Import:
-
-    To import this function into your application, you must include the follo-
-    wing line at the beginning:
+To import this function into your application, you must include the following 
+line at the beginning:
 
     ```from clean_erode import clean```
 
@@ -315,9 +315,7 @@ Returns:
     
     0 if everything works fine.
     
-Import:
-
-    To import this function into your application, you must include the following 
-    line at the beginning:
+To import this function into your application, you must include the following 
+line at the beginning:
     
     ```from threshold import apply```
