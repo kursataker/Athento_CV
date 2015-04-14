@@ -8,13 +8,12 @@ delivery notes, budgets, and other common documents.
 
 This package includes several functions to transform images:
 
-    - Remove coloured background.
-    - Remove "salt and pepper" noise.
-    - Line detection in documents (two approachs).
-    - Remove lines in documents.
-    - Simple line analysis (which lines are horizontal and vertical, distance
-        between lines, etc.
-    - Template matching improved using pyramid transformations.
+- Remove coloured background.
+- Remove "salt and pepper" noise.
+- Line detection in documents (two approachs).
+- Remove lines in documents.
+- Simple line analysis (which lines are horizontal and vertical, distance between lines, etc.
+- Template matching improved using pyramid transformations.
 
 
 The quality of the output and it's OCR performance will depend on:
